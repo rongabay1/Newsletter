@@ -4,12 +4,12 @@ const express = require("express");
 const port = process.env.PORT || 3000;
 const app = express()
 
-//in order to exclude givers from html
+//recognize the incoming Request Object as strings or arrays from HTML
 app.use(express.urlencoded({extended: true}));
 
 //The public folder which holds the CSS and images
 app.use(express.static("public"))
-
+//route to the main page
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/signup.html");
 })
@@ -53,7 +53,7 @@ app.post("/", (req, res) => {
 //Uploading the data to the server
 
     const  request = https.request(url, options, function (response) {
-        //even if the statuscode is 200
+        //check if the web working
         if(response.statusCode === 200){
 
             res.sendFile(__dirname + "/success.html");
